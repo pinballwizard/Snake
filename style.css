@@ -1,0 +1,15 @@
+.row{
+  clear:both;
+  margin-left:40%;
+}
+.row div{
+  float:left;
+  width:20px;
+  height:20px;
+  margin:1px;
+  border:1px solid black;
+  border-radius:10px;
+}
+.restart_button{
+  visibility : hidden;
+}
