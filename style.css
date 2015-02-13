@@ -1,15 +1,44 @@
 .row{
   clear:both;
-  margin-left:40%;
+  margin-left:20%;
 }
 .row div{
   float:left;
-  width:20px;
-  height:20px;
+  width:40px;
+  height:40px;
   margin:1px;
   border:1px solid black;
   border-radius:10px;
+  transition: background-color .2s;
 }
-.restart_button{
-  visibility : hidden;
+.menu{
+  display: inline;
+  font-size: 150%;
+}
+#score{
+  margin-left: 20%;
+}
+.menus{
+  margin-left: 10%;
+  margin-right: 1%;
+}
+.plus{
+  margin-left: 1%;
+}
+.button{
+  display: inline;
+  font-size: 150%;
+  width:100px;
+  height:40px;
+}
+.flex_box{
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+.flex_block{
+  flex-wrap: wrap;
+  flex-direction: column;
 }
