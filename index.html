@@ -7,12 +7,12 @@
   </head>
   <body>
     <input type="button" id="start_button" name="button" value="Start" class="button" onClick="start();">
-    <input type="button" class="menu speed menus" value="-" onClick="decreaseSpeed();">
+    <input type="button" class="menu speed menus" value="-" onClick="changeSpeed(-1);">
     <span class="menu speed" id="speed"></span>
-    <input type="button" class="menu speed plus" value="+" onClick="increaseSpeed();">
-    <input type="button" class="menu size menus" value="-" onClick="decreaseSize();">
+    <input type="button" class="menu speed plus" value="+" onClick="changeSpeed(1);">
+    <input type="button" class="menu size menus" value="-" onClick="changeSize(-1);">
     <span class="menu size" id="size"></span>
-    <input type="button" class="menu size plus" value="+" onClick="increaseSize();">
+    <input type="button" class="menu size plus" value="+" onClick="changeSize(1);">
     <span class="menu" id="score"></span>
     <div class="flex_box" id = "table"></div>
     <script type="text/javascript">createField()</script>
