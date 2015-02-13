@@ -1,5 +1,6 @@
 speed = 9;
 size = 15;
+
 function init(){
   x = 0;
   y = 0;
@@ -29,28 +30,18 @@ function main(){
     showSnake();
     setScore();
     setSpeed();
-    // robo();
     step();
     gameOver();
 }
 
-function robo(){
-  if (x<5){
-    x++;
-  }
-  else{
-    y++;
-  }
-}
-
 function khandle(e) {
   if(e.keyCode == 37){
-    dy = -1;
     dx = 0;
+    dy = -1;
   }
   if(e.keyCode == 39){
-    dy = 1;
     dx = 0;
+    dy = 1;
   }
   if(e.keyCode == 38){
     dx = -1;
@@ -79,65 +70,37 @@ function step(){
   }
   var head = x + "_" + y;
   snake_body.push(head);
-  for (i in food){
+  for (var i in food){
     if (head == food[i]){
       snake_length++;
       food.splice(i,1);
     }
   }
-}
-
-function setScore(){
-  document.getElementById("score").innerHTML = "Score: " + (snake_length-1);
-}
-
-function increaseSpeed(){
-  if(speed < 9){
-    speed++;
-  }
-  setSpeed();
-}
-
-function decreaseSpeed(){
-  if(1 < speed){
-    speed--;
-  }
-  setSpeed();
-}
-
-function increaseSize(){
-  if(size < 15){
-    size++;
-  }
-  setSize();
-  document.getElementById("table").removeChild(t);
-  createField();
-}
-
-function decreaseSize(){
-  if(5 < size){
-    size--;
-  }
-  setSize();
-  document.getElementById("table").removeChild(t);
-  createField();
-}
-
-function setSpeed(){
-  document.getElementById("speed").innerHTML = "Speed: " + (speed);
-}
-
-function setSize(){
-  document.getElementById("size").innerHTML = "Size: " + (size);
-}
-
-function showSnake(){
   if (snake_length < snake_body.length){
     snake_body.shift();
   }
-  for (i in snake_body){
-    setBlue(snake_body[i]);
+}
+
+function changeSpeed(x){
+  speed += x;
+  if(speed < 1 || speed > 9){
+    speed -= x;
   }
+  setSpeed();
+}
+
+function changeSize(x){
+  size += x;
+  if(size < 5 || size > 15){
+    size -= x;
+  }
+  setSize();
+  document.getElementById("table").removeChild(t);
+  createField();
+}
+
+function showSnake(){
+  snake_body.forEach(setBlue);
 }
 
 function getRandom(){
@@ -149,12 +112,12 @@ function makeFood(){
     var food_place = getRandom() + "_" + getRandom();
     var infood = false;
     var insnake = false;
-    for (i in food){
+    for (var i in food){
       if (food_place == food[i]){
         infood = true;
       }
     }
-    for (i in snake_body){
+    for (var i in snake_body){
       if (food_place == snake_body[i]){
         insnake = true;
       }
@@ -166,18 +129,15 @@ function makeFood(){
 }
 
 function showFood(){
-  for (i in food){
-    setGreen(food[i]);
-  }
+  food.forEach(setGreen);
 }
 
 function gameOver(){
-  for (i in snake_body){
-    if (snake_body.length > 2){
-        if (snake_body[i-1] == snake_body[snake_body.length-1]){
-	      stop();
-          alert("Game Over");
-	    }
+  var l = snake_body[snake_body.length-1];
+  for (var i in snake_body){
+    if (snake_body[i-1] == l){
+	  stop();
+      alert("Game Over");
 	}
   }
 }
@@ -192,26 +152,32 @@ function setGreen(name){
   g.style.background = "limegreen";
 }
 
-function removeColor(name){
-  var r = document.getElementsByClassName(name)[0];
-  r.style.background = "white";
+function setSpeed(){
+  document.getElementById("speed").innerHTML = "Speed: " + (speed);
+}
+
+function setSize(){
+  document.getElementById("size").innerHTML = "Size: " + (size);
+}
+
+function setScore(){
+  document.getElementById("score").innerHTML = "Score: " + (snake_length-1);
 }
 
 function clearField(){
   var c = document.getElementsByClassName("Cell");
-  for (i=0; i<c.length; i++){
-    var cel = c[i];
-    cel.style.background = "white";
-  };
+  for (var i = 0; i < c.length; i++){
+    c[i].style.background = "white";
+  }
 }
 
 function createField(){
   t = document.createElement('table');
   var tbody = document.createElement('tbody');
-  for(i=0;i<size;i++) {
+  for(var i = 0; i < size; i++) {
     var row = document.createElement('div');
     row.className = "row";
-    for (j=0;j<size;j++){
+    for (var j = 0; j < size; j++){
       var cell = document.createElement('div');
       cell.className = "cell "+i+"_"+j;
       row.appendChild(cell);
