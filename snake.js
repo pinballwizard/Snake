@@ -13,7 +13,7 @@ function init(){
   setScore();
   setSpeed();
   setSize();
-  button = document.getElementById("start_button");
+  button = $("#start_button")[0];
 }
 
 function start(){
@@ -95,7 +95,7 @@ function changeSize(x){
     size -= x;
   }
   setSize();
-  document.getElementById("table").removeChild(t);
+  $("#table").remove(t);
   createField();
 }
 
@@ -143,41 +143,33 @@ function gameOver(){
 }
 
 function setBlue(name){
-  var b = document.getElementsByClassName(name)[0];
-  // b.style.background = "DodgerBlue";
-  var st = b.className.split(" ");
-  b.className = st[0] + " " + st[1] + " snake";
-  console.log(b.className);
+  $("."+name).removeClass("empty");
+  $("."+name).removeClass("food");
+  $("."+name).addClass("snake");
 }
 
 function setGreen(name){
-  var g = document.getElementsByClassName(name)[0];
-  // g.style.background = "limegreen";
-  var st = g.className.split(" ");
-  g.className = st[0] + " " + st[1] + " food";
-  // console.log(g.className);
+  $("."+name).removeClass("empty");
+  $("."+name).removeClass("snake");
+  $("."+name).addClass("food");
 }
 
 function setSpeed(){
-  document.getElementById("speed").innerHTML = "Speed : " + (speed);
+  $("#speed").text("Speed : " + (speed));
 }
 
 function setSize(){
-  document.getElementById("size").innerHTML = "Size : " + (size);
+  $("#size").text("Size : " + (size));
 }
 
 function setScore(){
-  document.getElementById("score").innerHTML = "x " + (snake_length-1);
+  $("#score").text("x " + (snake_length-1));
 }
 
 function clearField(){
-  var c = document.getElementsByClassName("cell");
-  for (var i = 0; i < c.length; i++){
-  	var st = c[i].className.split(" ");
-  	c[i].className = st[0] + " " + st[1] + " empty";
-  	// console.log(c[i].className);
-    // c[i].style.background = "none";
-  }
+  $(".cell").removeClass("food");
+  $(".cell").removeClass("snake");
+  $(".cell").addClass("empty");
 }
 
 function createField(){
@@ -194,17 +186,17 @@ function createField(){
     tbody.appendChild(row);
   }
   t.appendChild(tbody);
-  document.getElementById("table").appendChild(t);
+  $("#table").append(t);
 }
 
 function buttonChange(){
-  button.value = "Stop";
+  $("#start_button").val("Stop");
   button.onclick = stop;
 }
 
 function stop(){
   window.clearInterval(loop);
-  button.value = "Restart";
+  $("#start_button").val("Restart");
   button.onclick = restart;
 }
 
@@ -212,6 +204,6 @@ function restart(){
   stop();
   clearField();
   init();
-  button.value = "Start";
+  $("#start_button").val("Start");
   button.onclick = start;
 }
