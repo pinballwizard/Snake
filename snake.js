@@ -1,5 +1,6 @@
-speed = 9;
-size = 15;
+speed = 1;
+size = 10;
+food_number = 5;
 
 function init(){
   x = 0;
@@ -9,7 +10,6 @@ function init(){
   snake_length = 1;
   snake_body = ["0_0"];
   food = [];
-  food_number = 5;
   setScore();
   setSpeed();
   setSize();
@@ -20,7 +20,7 @@ function start(){
   init();
   buttonChange();
   document.body.onkeydown = khandle;
-  loop = window.setInterval(main, 1000-100*speed);
+  loop = window.setInterval(main, 500-50*speed);
 }
 
 function main(){
@@ -144,30 +144,39 @@ function gameOver(){
 
 function setBlue(name){
   var b = document.getElementsByClassName(name)[0];
-  b.style.background = "DodgerBlue";
+  // b.style.background = "DodgerBlue";
+  var st = b.className.split(" ");
+  b.className = st[0] + " " + st[1] + " snake";
+  console.log(b.className);
 }
 
 function setGreen(name){
   var g = document.getElementsByClassName(name)[0];
-  g.style.background = "limegreen";
+  // g.style.background = "limegreen";
+  var st = g.className.split(" ");
+  g.className = st[0] + " " + st[1] + " food";
+  // console.log(g.className);
 }
 
 function setSpeed(){
-  document.getElementById("speed").innerHTML = "Speed: " + (speed);
+  document.getElementById("speed").innerHTML = "Speed : " + (speed);
 }
 
 function setSize(){
-  document.getElementById("size").innerHTML = "Size: " + (size);
+  document.getElementById("size").innerHTML = "Size : " + (size);
 }
 
 function setScore(){
-  document.getElementById("score").innerHTML = "Score: " + (snake_length-1);
+  document.getElementById("score").innerHTML = "x " + (snake_length-1);
 }
 
 function clearField(){
-  var c = document.getElementsByClassName("Cell");
+  var c = document.getElementsByClassName("cell");
   for (var i = 0; i < c.length; i++){
-    c[i].style.background = "white";
+  	var st = c[i].className.split(" ");
+  	c[i].className = st[0] + " " + st[1] + " empty";
+  	// console.log(c[i].className);
+    // c[i].style.background = "none";
   }
 }
 
