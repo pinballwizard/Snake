@@ -1,21 +1,40 @@
+<!DOCTYPE HTML>
 <html>
   <head>
     <meta charset=utf-8>
     <title>Snake</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="snake.js"></script>
   </head>
   <body>
-    <input type="button" id="start_button" name="button" value="Start" class="button" onClick="start();">
-    <input type="button" class="menu speed menus" value="-" onClick="changeSpeed(-1);">
-    <span class="menu speed" id="speed"></span>
-    <input type="button" class="menu speed plus" value="+" onClick="changeSpeed(1);">
-    <input type="button" class="menu size menus" value="-" onClick="changeSize(-1);">
-    <span class="menu size" id="size"></span>
-    <input type="button" class="menu size plus" value="+" onClick="changeSize(1);">
-    <span class="menu" id="score"></span>
-    <div class="flex_box" id = "table"></div>
-    <script type="text/javascript">createField()</script>
-    <script type="text/javascript">init()</script>
+	    <div class="head">
+	      <div class="section_two">
+	        <input type="button" class="menu speed menus" value="<" onClick="changeSpeed(-1);">
+	        <output class="menu speed" id="speed"></output>
+	        <input type="button" class="menu speed plus" value=">" onClick="changeSpeed(1);">
+	      </div>
+	      <div class="logo">
+	      	S N A K E !
+	      </div>
+	      <div class="section_three">
+	        <input type="button" class="menu size menus" value="<" onClick="changeSize(-1);">
+	        <output class="menu size" id="size"></output>
+	        <input type="button" class="menu size plus" value=">" onClick="changeSize(1);">
+	      </div>
+	    </div>
+	    <div class="flex_box">
+	    	<div class="section_one">
+	        	<input type="button" id="start_button" name="button" value="Start" class="button" onClick="start();">
+	      	</div>
+	    	<div id = "table"></div>
+	        <div class="section_four">
+	        	<img src="images/rabbit.png" align="bottom">
+	        	<output class="menu" id="score"></output>
+	        </div>
+	    </div>
+	    <script type="text/javascript">createField();</script>
+	    <script type="text/javascript">init();</script>
+	  <footer>Created by craby-wizard. 2015</footer>
   </body>
 </html>
